@@ -1,0 +1,40 @@
+/*
+Used to query OSM via overpass-turbo. Just notes now so we can figure out how to query later. 
+*/
+[out:json][timeout:25];
+// gather results
+(
+  // query part for: “Park”
+  node["leisure"="park"]({{bbox}});
+  way["leisure"="park"]({{bbox}});
+  relation["leisure"="park"]({{bbox}});
+  
+  // query part for: "Playground"
+  node["leisure"="playground"]({{bbox}});
+  way["leisure"="playground"]({{bbox}});
+  relation["leisure"="playground"]({{bbox}});
+  
+  //query part for: sport fields
+  node["leisure"="pitch"]({{bbox}});
+  way["leisure"="pitch"]({{bbox}});
+  relation["leisure"="pitch"]({{bbox}});
+  
+  //query part for: swimming
+  node["sport"="swimming"]({{bbox}});
+  way["sport"="swimming"]({{bbox}});
+  relation["sport"="swimming"]({{bbox}});
+  
+  //query part for: water_park
+  node["leisure"="water_park"]({{bbox}});
+  way["leisure"="water_park"]({{bbox}});
+  relation["leisure"="water_park"]({{bbox}});
+  
+  //query part for: shelters
+  node["amenity"="shelter"]["shelter_type"="picnic_shelter"]({{bbox}});
+  way["amenity"="shelter"]["shelter_type"="picnic_shelter"]({{bbox}});
+  relation["amenity"="shelter"]["shelter_type"="picnic_shelter"]({{bbox}});
+);
+// print results
+out body;
+>;
+out skel qt;
